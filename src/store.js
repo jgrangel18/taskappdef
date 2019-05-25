@@ -1,3 +1,5 @@
+// GLOBAL STORE IN MULTIPLE PARTS OF YOUR APPLICATION
+// BLOBAL OBJECT FOR YOUR APPLICATION.
 import Vue from 'vue'
 import Vuex from 'vuex'
 

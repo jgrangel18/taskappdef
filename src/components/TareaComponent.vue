@@ -8,6 +8,9 @@
       >
           <b-card-group deck>
             <b-card
+              border-variant="solid dark"
+              header-bg-variant="success"
+              header-text-variant="white"
               :header="tarea.fecha_vencimiento"
               header-tag="header"
               footer="Card Footer"

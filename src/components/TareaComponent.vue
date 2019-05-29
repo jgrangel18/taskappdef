@@ -30,7 +30,8 @@
 <script>
 export default {
   props: {
-    Tareas: Array
+    Tareas: Array,
+    TipoTarea: Array
   },
   mounted () {
     this.Tareas.map(item => {

@@ -2,6 +2,7 @@
 <div>
   <TareaComponent
   v-bind:Tareas="Tareas"
+  v-bind:TipoTarea="TipoTarea"
   >
   </TareaComponent>
 </div>

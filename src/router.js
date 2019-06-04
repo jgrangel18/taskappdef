@@ -21,7 +21,7 @@ export default new Router({
       component: About
     },
     {
-      path: '/mytasks',
+      path: '/mytasks/:id',
       name: 'mytasks',
       component: MyTasks
     }

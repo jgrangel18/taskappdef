@@ -33,10 +33,18 @@ export default [
   },
   {
     id: 5,
-    nombre: 'Pagar Luz',
+    nombre: 'Emprender',
     fecha_vencimiento: '12/07/2019',
     status: 0,
     responsable_id: 2,
     tipo_tarea: 2
+  },
+  {
+    id: 5,
+    nombre: 'Asesinar a CH',
+    fecha_vencimiento: '03/06/2019',
+    status: 0,
+    responsable_id: 2,
+    tipo_tarea: 1
   }
 ]

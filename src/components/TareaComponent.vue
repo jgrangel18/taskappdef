@@ -1,6 +1,7 @@
 <template>
 <div>
   <b-container>
+    <h1> {{ $route.params.id }} </h1>
     <b-row>
       <b-col lg="3" md="3"
         v-for="(tarea,index) in getArray"
@@ -34,7 +35,8 @@
 export default {
   props: {
     Tareas: Array,
-    TipoTarea: Array
+    TipoTarea: Array,
+    Responsables: Array
   },
   data () {
     return {
@@ -45,7 +47,16 @@ export default {
           'frecuencia': '',
           'color': '',
           'fecha_vencimiento': '',
-          'status': ''
+          'status': '',
+          'responsablename': '',
+          'responsable_id': '',
+          'name': '',
+          'lastname': '',
+          'dob': '',
+          'age': '',
+          'username': '',
+          'email': ''
+
         }
       ]
     }
@@ -90,6 +101,11 @@ export default {
             'fecha_vencimiento': iterator.fecha_vencimiento,
             'status': iterator.status
           })
+        }
+      }
+      for (let resp of this.Responsables) {
+        if (iterator.responsable_id === resp.id) {
+          console.log('EXISTO' + resp.name);
         }
       }
     }

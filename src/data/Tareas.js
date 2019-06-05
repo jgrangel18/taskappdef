@@ -40,7 +40,7 @@ export default [
     tipo_tarea: 2
   },
   {
-    id: 5,
+    id: 6,
     nombre: 'Asesinar a CH',
     fecha_vencimiento: '03/06/2019',
     status: 0,

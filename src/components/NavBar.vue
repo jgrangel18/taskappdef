@@ -9,7 +9,6 @@
         <b-nav-item href="#">Mytasks</b-nav-item>
         <b-nav-item href="#">Calendar</b-nav-item>
       </b-navbar-nav>
-
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item-dropdown text="Lang" right>

@@ -13,28 +13,37 @@
               header-bg-variant="primary"
               header-text-variant="white"
               :title="tarea.nombreTarea"
-              :header="tarea.fecha_vencimiento"
+              :header="'FECHA:'+tarea.fecha_vencimiento"
             >
             <!-- :footer="test" -->
             <!-- :header="getfrequency(tarea.tipo_tarea)" -->
             <b-list-group flush>
               <b-list-group-item><b>Frecuencia:</b> {{tarea.frecuencia}}</b-list-group-item>
-              <b-list-group-item><b>Color:</b> {{tarea.color}}</b-list-group-item>
-              <b-list-group-item><b>Responsable name:</b> {{tarea.name}} {{tarea.lastname}}</b-list-group-item>
-              <b-list-group-item><b>dob:</b> {{tarea.dob}}</b-list-group-item>
+              <b-list-group-item><b>Time:</b>{{tarea.hora}} </b-list-group-item>
+              <b-list-group-item><b>Status:</b> {{tarea.status}}</b-list-group-item>
             </b-list-group>
             <br>
-            <b-button href="#" variant="primary">Edit</b-button>
+            <b-button variant="primary" class="btn-space">Editar</b-button>
+            <b-button v-on:click="removetask(tarea.id)" class="btn-space" variant="primary">Eliminar</b-button>
             </b-card>
           </b-card-group>
           <br>
         </b-col>
   </b-row>
+  <NewTask
+    v-bind:addarray="addarray"
+    v-bind:tamanioarray="tamanioarray"
+  >
+  </NewTask>
   </b-container>
 </div>
 </template>
 <script>
+import NewTask from '@/components/NewTask.vue'
 export default {
+  components: {
+    NewTask
+  },
   props: {
     Tareas: Array,
     TipoTarea: Array,
@@ -42,7 +51,8 @@ export default {
   },
   data () {
     return {
-      mixTareas: []
+      mixTareas: [],
+      tamanioarray: 0
     }
   },
   methods: {
@@ -67,38 +77,32 @@ export default {
       this.mixTareas.push({
         id: tareaobject.id,
         nombreTarea: tareaobject.nombreTarea,
-        color: tareaobject.color,
         frecuencia: tareaobject.frecuencia,
         fecha_vencimiento: tareaobject.fecha_vencimiento,
         status: tareaobject.status,
         responsable_id: tareaobject.responsable_id,
-        name: tareaobject.name,
-        lastname: tareaobject.lastname,
-        dob: tareaobject.dob,
-        age: tareaobject.age,
-        username: tareaobject.username,
-        email: tareaobject.email
-
+        hora: tareaobject.hora
       });
-      // console.log(tareaobject.nombreTarea);
-      // console.log(tareaobject.frecuencia);
-      // console.log(tareaobject.color);
-      // console.log(tareaobject.fecha_vencimiento);
-      // console.log(tareaobject.status);
-      // console.log(tareaobject.responsable_id);
-      // console.log(tareaobject.name);
-      // console.log(tareaobject.lastname);
-      // console.log(tareaobject.dob);
-      // console.log(tareaobject.age);
-      // console.log(tareaobject.username);
-      // console.log(tareaobject.email);
+      this.tamanioarray = this.mixTareas.length;
+      // console.log('ID' + tareaobject.id);
+      // console.log('NOMBRE TAREA' + tareaobject.nombreTarea);
+      // console.log('FRECUENCIA' + tareaobject.frecuencia);
+      // console.log('Fecha Vencimiento' + tareaobject.fecha_vencimiento);
+      // console.log('Status' + tareaobject.status);
+      // console.log('Responsable ID' + tareaobject.responsable_id);
+      // console.log('HORA' + tareaobject.hora);
+    },
+    removetask (index) {
+      console.log(index);
+      this.mixTareas = this.mixTareas.filter(tarea => {
+        console.log(tarea.id);
+        return tarea.id !== index
+      })
     }
   },
   computed: {
     getArray () {
       const arr = this.mixTareas.filter((tarea, index) => {
-        console.log('responsable' + tarea.responsable_id);
-        console.log('ruta parametro' + this.$route.params.id);
         return tarea.responsable_id == this.$route.params.id // will return the array from the second value
       })
       return arr
@@ -114,6 +118,7 @@ export default {
       fecha_vencimiento: '',
       status: '',
       responsable_id: '',
+      hora: '',
       name: '',
       lastname: '',
       dob: '',
@@ -143,10 +148,18 @@ export default {
         }
       }
       displaytarea.id = iterator.id
+      displaytarea.hora = iterator.hora
       this.addarray(displaytarea);
     }
-    this.imprimir();
+    // this.imprimir();
+    // console.log(this.mixTareas.length);
+    // console.log(this.tamanioarray);
   }
 }
 
 </script>
+<style lang="scss">
+ .btn-space {
+    margin-right: 5px;
+}
+</style>

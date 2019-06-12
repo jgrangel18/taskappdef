@@ -16,6 +16,7 @@ import TipoTarea from '@/data/TipoTarea'
 import Responsables from '@/data/Responsables'
 import TareaComponent from '@/components/TareaComponent.vue'
 import NavBar from '@/components/NavBar.vue'
+
 export default {
   components: {
     TareaComponent,

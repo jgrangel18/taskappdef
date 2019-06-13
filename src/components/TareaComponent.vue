@@ -23,7 +23,7 @@
               <b-list-group-item><b>Status:</b> {{tarea.status}}</b-list-group-item>
             </b-list-group>
             <br>
-            <b-button variant="primary" class="btn-space">Editar</b-button>
+            <b-button v-on:click="updatetask(tarea.id)" variant="primary" class="btn-space">Editar</b-button>
             <b-button v-on:click="removetask(tarea.id)" class="btn-space" variant="primary">Eliminar</b-button>
             </b-card>
           </b-card-group>
@@ -35,14 +35,21 @@
     v-bind:tamanioarray="tamanioarray"
   >
   </NewTask>
+  <UpdateTask
+  v-bind:modalShow="modalShow"
+  >  
+  </UpdateTask>
   </b-container>
+
 </div>
 </template>
 <script>
 import NewTask from '@/components/NewTask.vue'
+import UpdateTask from '@/components/UpdateTask.vue'
 export default {
   components: {
-    NewTask
+    NewTask,
+    UpdateTask
   },
   props: {
     Tareas: Array,
@@ -52,7 +59,8 @@ export default {
   data () {
     return {
       mixTareas: [],
-      tamanioarray: 0
+      tamanioarray: 0,
+      modalShow:false
     }
   },
   methods: {
@@ -98,8 +106,12 @@ export default {
         console.log(tarea.id);
         return tarea.id !== index
       })
+    },
+    updatetask () {
+      this.modalShow = !this.modalShow;
     }
   },
+  
   computed: {
     getArray () {
       const arr = this.mixTareas.filter((tarea, index) => {

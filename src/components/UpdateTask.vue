@@ -1,6 +1,5 @@
 <template>
   <div>
-    <b-button @click="modalShow = !modalShow" v-b-modal.modal-prevent-closing>Create a Task</b-button>
     <b-modal
       v-model="modalShow"
       id="modal-prevent-closing"
@@ -90,13 +89,10 @@
 <script>
 export default {
   props: {
-    addarray: Function,
-    tamanioarray: Number
-
+     modalShow:Boolean
   },
-  data () {
+    data () {
     return {
-      modalShow: false,
       tipo_tarea: [
         { value: null, text: 'Escoga Tarea' },
         { value: 'Diaria', text: 'Diaria' },
@@ -143,17 +139,6 @@ export default {
       if (!this.checkFormValidity()) {
         return
       }
-      // Push the name to submitted names
-      console.log('HOLA SOY EL TAMANIO' + this.tamanioarray);
-      console.log('IMPRIMIENDO' + this.tarea.fecha_vencimiento);
-      console.log(this.tarea.nombreTarea);
-      console.log(this.tarea.frecuencia);
-      console.log(this.tarea.hora);
-      console.log(this.selected);
-      this.tarea.id = this.tamanioarray + 1;
-      this.tarea.status = 0;
-      this.addarray(this.tarea);
-      // Hide the modal manually
       this.$nextTick(() => {
         this.$refs.modal.hide()
       })
